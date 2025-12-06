@@ -1,0 +1,209 @@
+/*=======================
+        styles.css
+ =======================*/
+
+body{
+  gap: 10px;
+  margin: auto;
+  width: 100vw;
+  height:100vh;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  background-color: #0A001F;
+  font-family: 'Comic Sans MS', sans serif;
+}
+
+.scanline-overlay::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.5) 0px,
+      rgba(0, 0, 0, 0.4) 1px,
+      transparent 2px,
+      transparent 3px
+  );
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.15;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0 30px;
+  padding: 10px;
+  box-shadow: 0px 2px 0px #FF00FF;
+  height: auto;
+}
+
+
+.title h1 {
+  color: #FF00FF;
+  font-size: 50px;
+  font-weight: bold;
+  font-family: 'Orbitron';
+}
+
+.title h2 {
+  margin: 0;
+  padding: 0;
+  color: grey;
+  font-size: 30px;
+  font-family: 'Orbitron';
+}
+
+.board {
+  align-items: center;
+  width: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.to-do, .current, .done {
+  gap: 10px;
+  width: 30%;
+  height: 90%;
+  margin: auto;
+  color: white;
+  overflow: clip;
+  border-radius: 20px;
+  flex-direction: column;
+  background-color: #180D3B;
+  border: solid 2px #FF00FF;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.done:hover, .to-do:hover, .current:hover{
+  background-color: #180D3B;
+  filter: none;
+  box-shadow:
+    0 0 15px #FF00FF,
+    0 0 30px rgba(255, 0, 255, 0.4),
+    inset 0 0 10px #FF00FF;
+  cursor: pointer;
+}
+
+.PLhead, .APhead, .Ahead {
+  width: 90%;
+  height: 10%;
+  margin: auto;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 2px #FF00FF;
+  font-family: 'Orbitron', 'Comic Sans MS';
+}
+
+.PLcontent {
+  gap: 10px;
+  height: 80%;
+  width: 100%;
+  display: flex;
+  overflow: auto;
+  font-size: 2rem;
+  padding-top: 20px;
+  position: relative;
+  align-items: center;
+  border-radius: 20px;
+  flex-direction: column;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.PLcontent .btn {
+  width: 90%;
+  height: 10%;
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin-top: auto;
+  font-weight: bold;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  background-color: #1F51FF;
+  transition: all 0.2s ease-in-out;
+}
+
+.PLcontent .btn:hover {
+  box-shadow: 0px 0px 15px 5px rgba(31, 81, 255, 0.7);
+  transform: translateY(-2px);
+}
+
+.ALcontent, .Acontent {
+  height: 90%;
+  width: 100%;
+  display: flex;
+  color: #8b949e;
+  font-size: 1.5vw;
+  align-items: center;
+  justify-content: center;
+}
+
+.PLtasks {
+  gap: 10px;
+  width: 90%;
+  height: 90%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;   /* stack vertically */
+  align-items: flex-start;  /* top aligned */
+  overflow-y: auto;
+}
+
+.taskbox {
+  width: 95%;
+  margin: 5px auto;
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  border: solid 2px #FF00FF;
+  background-color: #0A001F;
+  transition: all 0.3s ease-in-out;
+  max-height: 400px;            /* collapsed height */
+}
+
+.taskbox.expanded {
+  max-height: 600px;         /* expands big */
+  width: 98%;                /* optional – slightly bigger */
+}
+
+.taskbox:hover {
+  filter: none;
+  box-shadow:
+    0 0 5px #FF00FF,
+    0 0 10px rgba(255, 0, 255, 0),
+    inset 0 0 2px #FF00FF;
+  cursor: pointer;
+}
+
+.tasks {
+  overflow: auto;
+}
+
+.task-controls button {
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  background-color: #1F51FF;
+  transition: all 0.2s ease-in-out;
+}
+.task-controls .expand {
+  background-color: green;
+}
+
+.task-controls button:hover {
+  box-shadow: 0px 0px 15px 5px rgba(31, 81, 255, 0.7);
+  transform: translateY(-2px);
+}
+
+
