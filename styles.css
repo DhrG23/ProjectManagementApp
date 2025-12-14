@@ -2,6 +2,11 @@
         styles.css
  =======================*/
 
+@font-face {
+  font-family: "Orbitron";
+  src: url("./fonts/Orbitron-Regular.ttf");
+}
+
 body{
   gap: 10px;
   margin: auto;
@@ -10,6 +15,7 @@ body{
   color: white;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   background-color: #0A001F;
   font-family: 'Comic Sans MS', sans serif;
 }
@@ -51,12 +57,17 @@ body{
   font-family: 'Orbitron';
 }
 
-.title h2 {
+.grid {
   margin: 0;
   padding: 0;
   color: grey;
   font-size: 30px;
   font-family: 'Orbitron';
+}
+.grid:hover{
+  color: purple;
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .board {
@@ -71,9 +82,9 @@ body{
   gap: 10px;
   width: 30%;
   height: 90%;
+  display: flex;
   margin: auto;
   color: white;
-  overflow: clip;
   border-radius: 20px;
   flex-direction: column;
   background-color: #180D3B;
@@ -94,6 +105,7 @@ body{
 
 .PLhead, .APhead, .Ahead {
   width: 90%;
+  flex: 0 0 auto;
   height: 10%;
   margin: auto;
   color: white;
@@ -105,13 +117,13 @@ body{
 
 .PLcontent {
   gap: 10px;
-  height: 80%;
   width: 100%;
+  object-fit: contain;
   display: flex;
-  overflow: auto;
   font-size: 2rem;
   padding-top: 20px;
   position: relative;
+  overflow-y: auto;
   align-items: center;
   border-radius: 20px;
   flex-direction: column;
@@ -120,7 +132,7 @@ body{
 
 .PLcontent .btn {
   width: 90%;
-  height: 10%;
+  height: 50px;
   border: none;
   color: white;
   cursor: pointer;
@@ -139,44 +151,40 @@ body{
 
 .ALcontent, .Acontent {
   height: 90%;
-  width: 100%;
+  width: 90%;
   display: flex;
   color: #8b949e;
+  margin: 0 auto;
+  align-items: flex-start;
+  padding: 10px;
+  flex-direction: column;
   font-size: 1.5vw;
-  align-items: center;
-  justify-content: center;
 }
 
 .PLtasks {
   gap: 10px;
   width: 90%;
-  height: 90%;
-  margin: auto;
+  height: 550px;
   display: flex;
   flex-direction: column;   /* stack vertically */
-  align-items: flex-start;  /* top aligned */
   overflow-y: auto;
+  padding-bottom: 10px;
+  align-items: flex-start;  /* top aligned */
 }
 
 .taskbox {
   width: 95%;
-  margin: 5px auto;
   display: flex;
+  margin: 0 auto;
   flex-direction: column;
   border-radius: 15px;
   border: solid 2px #FF00FF;
   background-color: #0A001F;
   transition: all 0.3s ease-in-out;
-  max-height: 400px;            /* collapsed height */
-}
-
-.taskbox.expanded {
-  max-height: 600px;         /* expands big */
-  width: 98%;                /* optional – slightly bigger */
+  min-height: 200px;
 }
 
 .taskbox:hover {
-  filter: none;
   box-shadow:
     0 0 5px #FF00FF,
     0 0 10px rgba(255, 0, 255, 0),
@@ -184,26 +192,25 @@ body{
   cursor: pointer;
 }
 
-.tasks {
-  overflow: auto;
+.ql-container{
+  display:flex;
+  flex-direction: column;
+  border-radius: 10px;
+  padding: 2px;
 }
 
-.task-controls button {
-  color: white;
-  cursor: pointer;
-  font-weight: bold;
-  border-radius: 5px;
-  margin-bottom: 15px;
-  background-color: #1F51FF;
-  transition: all 0.2s ease-in-out;
-}
-.task-controls .expand {
-  background-color: green;
+.tasktitle {
+  box-shadow: 0px 2px #FF00FF;
 }
 
-.task-controls button:hover {
-  box-shadow: 0px 0px 15px 5px rgba(31, 81, 255, 0.7);
-  transform: translateY(-2px);
+.taskbox.dragging {
+  opacity: 0.4;
+  border-style: dashed;
 }
 
+.PLtasks,
+.ALcontent,
+.Acontent {
+  min-height: 100px;
+}
 

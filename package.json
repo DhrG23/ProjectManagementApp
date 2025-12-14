@@ -12,5 +12,8 @@
   "type": "commonjs",
   "devDependencies": {
     "electron": "^39.2.3"
+  },
+  "dependencies": {
+    "quill": "^2.0.3"
   }
 }
