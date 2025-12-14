@@ -50,8 +50,8 @@ function addTask() {
   
   const taskId = crypto.randomUUID();
   const taskBlock = `
-    <div class="taskbox" draggable="true" data-id="${taskId}" > 
-      <div class="tasktitle" contenteditable="true">Cyberpunk Theme List</div>
+    <div class="taskbox"  data-id="${taskId}" > 
+      <div class="tasktitle" draggable="true">Cyberpunk Theme List</div>
 
       <div class="ql-container">
         <div class="quill-editor-instance">
@@ -168,4 +168,51 @@ function saveAllTasks() {
 
   writeTaskToFile(data);
 }
+
+document.addEventListener('dblclick', (e) => {
+  const title = e.target.closest('.tasktitle');
+  if (!title) return;
+
+  // Disable dragging while editing
+  title.setAttribute('contenteditable', 'true');
+  title.setAttribute('draggable', 'false');
+
+  title.classList.add('editing');
+  title.focus();
+
+  // Move caret to end
+  const range = document.createRange();
+  const sel = window.getSelection();
+  range.selectNodeContents(title);
+  range.collapse(false);
+  sel.removeAllRanges();
+  sel.addRange(range);
+});
+
+function finishTitleEdit(title) {
+  title.removeAttribute('contenteditable');
+  title.setAttribute('draggable', 'true');
+  title.classList.remove('editing');
+
+  saveAllTasks(); // persist change
+}
+
+document.addEventListener('blur', (e) => {
+  if (!e.target.classList.contains('tasktitle')) return;
+  finishTitleEdit(e.target);
+}, true);
+
+document.addEventListener('keydown', (e) => {
+  if (!e.target.classList.contains('tasktitle')) return;
+
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    e.target.blur();
+  }
+
+  if (e.key === 'Escape') {
+    e.preventDefault();
+    e.target.blur();
+  }
+});
 

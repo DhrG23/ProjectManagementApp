@@ -199,10 +199,6 @@ body{
   padding: 2px;
 }
 
-.tasktitle {
-  box-shadow: 0px 2px #FF00FF;
-}
-
 .taskbox.dragging {
   opacity: 0.4;
   border-style: dashed;
@@ -212,5 +208,21 @@ body{
 .ALcontent,
 .Acontent {
   min-height: 100px;
+}
+.tasktitle {
+  cursor: grab;
+  user-select: none;
+}
+
+.tasktitle.editing {
+  cursor: text;
+  box-shadow: 0px 2px #FF00FF;
+  user-select: text;
+  outline: 1px dashed #00fff7;
+  background: rgba(0, 255, 247, 0.08);
+}
+
+.tasktitle:active {
+  cursor: grabbing;
 }
 
